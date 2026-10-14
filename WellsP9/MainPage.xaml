@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WellsP9.MainPage"
+             Title="Flash Card App">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- Tab header buttons -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,*" ColumnSpacing="0">
+            <Button x:Name="FlashCardTabButton"
+                    Grid.Column="0"
+                    Text="Flash Cards"
+                    Clicked="FlashCardTabButton_Clicked"
+                    BackgroundColor="#512BD4"
+                    TextColor="White" />
+            <Button x:Name="ManageTabButton"
+                    Grid.Column="1"
+                    Text="Manage Cards"
+                    Clicked="ManageTabButton_Clicked"
+                    BackgroundColor="#CCCCCC"
+                    TextColor="Black" />
+        </Grid>
+
+        <!-- ===== TAB 1: Flash Card ===== -->
+        <ScrollView x:Name="FlashCardPanel" Grid.Row="1" IsVisible="True">
+            <VerticalStackLayout Padding="15" Spacing="10">
+
+                <Label Text="Card ID:"
+                       FontAttributes="Bold" />
+                <Label x:Name="CardIDLabel" />
+
+                <Label Text="Title:"
+                       FontAttributes="Bold" />
+                <Label x:Name="CardTitleLabel" FontSize="16" FontAttributes="Bold" />
+
+                <Label Text="Question:"
+                       FontAttributes="Bold" />
+                <Label x:Name="CardQuestionLabel" FontSize="14" />
+
+                <Label x:Name="InstructionLabel"
+                       Text="Think about the answer, then click Show Answer."
+                       FontAttributes="Italic"
+                       TextColor="Gray" />
+
+                <Button x:Name="ShowAnswerButton"
+                        Text="Show Answer"
+                        Clicked="ShowAnswerButton_Clicked"
+                        HorizontalOptions="Start" />
+
+                <!-- Answer section — hidden until Show Answer is clicked -->
+                <VerticalStackLayout x:Name="AnswerPanel" IsVisible="False" Spacing="8">
+                    <Label Text="Answer:"
+                           FontAttributes="Bold" />
+                    <Label x:Name="CardAnswerLabel" FontSize="14" />
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <Button x:Name="RightButton"
+                                Grid.Column="0"
+                                Text="Right"
+                                BackgroundColor="Green"
+                                TextColor="White"
+                                Clicked="RightButton_Clicked" />
+                        <Button x:Name="WrongButton"
+                                Grid.Column="1"
+                                Text="Wrong"
+                                BackgroundColor="Red"
+                                TextColor="White"
+                                Clicked="WrongButton_Clicked" />
+                    </Grid>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- ===== TAB 2: Manage Cards ===== -->
+        <ScrollView x:Name="ManagePanel" Grid.Row="1" IsVisible="False">
+            <VerticalStackLayout Padding="15" Spacing="8">
+
+                <Label Text="Cards:"
+                       FontAttributes="Bold" />
+                <Border Stroke="Gray" StrokeThickness="1" HeightRequest="160">
+                    <CollectionView x:Name="CardsCollectionView"
+                                    SelectionMode="Single"
+                                    SelectionChanged="CardsCollectionView_SelectionChanged">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Label Text="{Binding .}" Padding="5,3" />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Border>
+
+                <Label Text="Title:"
+                       FontAttributes="Bold" />
+                <Entry x:Name="TitleEntry" Placeholder="Card title" />
+
+                <Label Text="Question:"
+                       FontAttributes="Bold" />
+                <Editor x:Name="QuestionEditor"
+                        Placeholder="Card question"
+                        HeightRequest="80"
+                        AutoSize="Disabled" />
+
+                <Label Text="Answer:"
+                       FontAttributes="Bold" />
+                <Editor x:Name="AnswerEditor"
+                        Placeholder="Card answer"
+                        HeightRequest="80"
+                        AutoSize="Disabled" />
+
+                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                    <Button Grid.Column="0"
+                            Text="Add"
+                            Clicked="AddButton_Clicked" />
+                    <Button Grid.Column="1"
+                            Text="Update"
+                            Clicked="UpdateButton_Clicked" />
+                    <Button Grid.Column="2"
+                            Text="Remove"
+                            BackgroundColor="Red"
+                            TextColor="White"
+                            Clicked="RemoveButton_Clicked" />
+                </Grid>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+
+</ContentPage>

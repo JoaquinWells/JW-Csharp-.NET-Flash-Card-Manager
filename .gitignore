@@ -1,0 +1,35 @@
+# .NET build outputs
+bin/
+obj/
+
+# Visual Studio / VS Code
+.vscode/launch.json.user
+*.user
+*.suo
+.vs/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# NuGet
+*.nupkg
+*.snupkg
+project.lock.json
+packages/
+.nuget/
+
+# MAUI / Xcode derived data
+*.xcworkspace
+DerivedData/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+
+# Rider
+.idea/
+
+# Logs
+*.log
